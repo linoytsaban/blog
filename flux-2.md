@@ -127,7 +127,8 @@ image = pipe(
 
 Using `bitsandbytes` , we can load the transformer and text encoder models in 4-bit, allowing owners of 24GB GPUs to use the model locally. You can run this snippet on a GPU with ~20 GB of **free** VRAM.
 
-- Unfold
+<details>
+  <summary>click to expand</summary>
 
   ```python
   import torch
@@ -162,6 +163,7 @@ Using `bitsandbytes` , we can load the transformer and text encoder models in 4-
 
   image.save("flux2_t2i_nf4.png")
   ```
+</details>
 
 **Local + remote**
 
@@ -178,7 +180,8 @@ The example below uses a combination of local and remote inference. Additionally
 
 You can run this snippet on a GPU with 18 GB of VRAM:
 
-- Unfold
+<details>
+  <summary>click to expand</summary>
 
   ```python
   from diffusers import Flux2Pipeline, Flux2Transformer2DModel
@@ -239,10 +242,12 @@ You can run this snippet on a GPU with 18 GB of VRAM:
   for idx, image in enumerate(out.images):
       image.save(f"flux_out_{idx}.png")
   ```
+</details>
 
 For GPUs with even lower VRAM, we have `group_offloading`, which allows GPUs with as little as 8GB of **free** VRAM to use this model. However, you'll need 32GB of **free** RAM. Alternatively, if you're willing to sacrifice some speed, you can set `low_cpu_mem_usage=True` to reduce the RAM requirement to just 10GB.
 
-- Unfold
+<details>
+  <summary>click to expand</summary>
 
   ```python
   import io
@@ -305,9 +310,9 @@ For GPUs with even lower VRAM, we have `group_offloading`, which allows GPUs wit
   ).images[0]
 
   ```
+</details>
 
 > [!NOTE]
-
 > You can check out other supported quantization backends [here](https://huggingface.co/docs/diffusers/main/en/quantization/overview) and other memory-saving techniques [here](https://huggingface.co/docs/diffusers/main/en/optimization/memory).
 
 To check how different quantizations affect an image, you can play with the playground below or access it as standlone in the [FLUX.2 Quantization experiments Space](https://huggingface.co/spaces/multimodalart/flux2-quantization)
