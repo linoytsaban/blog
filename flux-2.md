@@ -37,7 +37,7 @@ FLUX.2 can be used for both **image-guided** and **text-guided** image generatio
 
 ### Text encoder
 
-First, instead of two text encoders as in Flux.1, it uses a single text encoder — [Mistral Small 3.1](https://mistral.ai/news/mistral-small-3-1). Using a single text encoder greatly simplifies the process of computing prompt embeddings. The pipeline allows for a `max_sequence_length` of 512.
+First, instead of two text encoders as in Flux.1, it uses a single text encoder — [Mistral Small 3.2](https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506). Using a single text encoder greatly simplifies the process of computing prompt embeddings. The pipeline allows for a `max_sequence_length` of 512.
 
 ### DiT
 
@@ -77,6 +77,7 @@ Before you try out the following code snippets, make sure you have installed `di
 ```bash
 pip uninstall diffusers -y && pip install git+https://github.com/huggingface/diffusers -U
 ```
+
 
 ### Regular Inference
 
@@ -325,7 +326,11 @@ To check how different quantizations affect an image, you can play with the play
   allow="clipboard-write; clipboard-read;">
 </iframe>
 
-### Multiple images as reference
+### Prompt Upsampling
+It is strongly recommended by the Black Forest Labs team to use prompt upsampling for the best results with FLUX.2.
+
+
+## Multiple images as reference
 
 FLUX.2 supports using multiple images as inputs, allowing you to use up to 10 images. However, keep in mind that each additional image will require more VRAM. You can reference the images by index (e.g., image 1, image 2) or by natural language (e.g., the kangaroo, the turtle). For optimal results, the best approach is to use a combination of both methods.
 
@@ -339,7 +344,7 @@ from transformers import Mistral3ForConditionalGeneration
 from diffusers import Flux2Pipeline, Flux2Transformer2DModel
 from diffusers.utils import load_image
 
-repo_id = "diffusers-internal-dev/new-model-image-final-weights"
+repo_id = "black-forest-labs/FLUX.2-dev"
 device = "cuda:0"
 torch_dtype = torch.bfloat16
 
